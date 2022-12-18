@@ -1,0 +1,349 @@
+#include <iostream>
+#include<istream>
+#include<fstream>
+#include<vector>
+#include<string>
+#include <conio.h>
+
+
+using namespace std;
+//Import class header file
+#include "classassign.h";
+
+void accountType();
+void schoolRegistration();
+void volunteerRegistration();
+
+user :: user(string us, string pwd, string schId, string schName, string fname, string pos)
+    {
+    username = us;
+    password = pwd;
+    schoolID = schId;
+    schoolName = schName;
+    fullname = fname;
+    position = pos;
+    }
+string userAdmin:: toString()
+{
+    string schoolData = "schoolID: " + schoolID + " , school name: " + schoolName;
+    string adminData = "Admin Name: " + fullname + ", Position: " + position;
+
+    return schoolData;
+    return adminData;
+}
+
+request :: request(string reqID, string reqDate)
+{
+    requestID = reqID;
+    requestDate = reqDate;
+}
+
+void school ::regRequest(request newRequest)
+{
+    requestColl.push_back(newRequest);
+}
+
+void schoolHelp ::regSchool(school newSchool)
+{
+    schoolColl.push_back(newSchool);
+}
+
+void schoolHelp ::regUser(user newUser)
+{
+    userColl.push_back(newUser);
+}
+
+//not really sure this one
+string schoolHelp ::printUser()
+{
+    string result = "";
+    for (int i=0; i<userColl.size(); i++)
+    {
+        result = result + userColl[i].toString() + "\n";
+    }
+    return result;
+}
+
+// main for menu
+int main()
+{
+    //schoolHelp stikomBali = schoolHelp();
+    int choice = -1;
+    while(choice != 0)
+    {
+        accountType();
+        cout << "Enter your choice [1-2]: ";
+        cin >> choice;
+        switch(choice)
+        {
+            //Case 1 will redirect to admin page
+            case 1:
+                adminMenu();
+                break;
+
+            //Case 2 will redirect to volunteer page
+            case 2:
+                volunteerMenu();
+                break;
+            default:
+                cout << "invalid options";
+        }
+    }
+    return 0;
+}
+
+//initial menu for user chooses account type
+void accountType()
+{
+    cout << "\nSchoolHELP" << endl;
+    cout << "============================" << endl;
+    cout << "\n Press 1 for Administrator" << endl;
+    cout << "\n Press 2 for Volunteer" << endl;
+    cout << "============================" << endl;
+}
+
+
+void adminMenu(int i)
+{
+    int adminMenu = 1;
+    cout<<"\n School HELP";
+    cout << "=============" << endl;
+    cout<<"\n Press 1 to Register School"<<endl;
+    cout<<"\n Press 2 to Submit Request"<<endl;
+    cout<<"\n Press 3 Review Offers"<<endl;
+    cout<<"\n Press 4 to QUIT"<<endl;
+    cout << "=============" << endl;
+    cout<<"\n Choice? [1-4]: ";
+
+    cin >> adminMenu;
+    cout << endl;
+}
+
+//switch for admin
+switch(administrator)
+    {
+        case 1:
+            schoolRegistration();
+            break;
+
+        case 2:
+            submitRequest();
+            break;
+
+        case 3:
+            reviewOffers();
+            break;
+
+        case 4:
+            cout<<"Program will quit..";
+        default:
+            cout<<"There is no options there.. please enter appropriate number above";
+            adminMenu();
+    }
+
+//Volunteer Menu page
+void volunteerMenu()
+{
+    //Volunteer page
+    cout<<"\n School HELP";
+    cout << "=============" << endl;
+    cout<<"\n Press 1 to Register" << endl;
+    cout<<"\n Press 2 to View Requests"<< endl;
+    cout<<"\n Press 3 to Submit Requests"<< endl;
+    cout<<"\n Press 4 to QUIT"<<endl;
+    cout << "=============" << endl;
+    cout<<"\n Choice? [1-4]: ";
+
+    cin>>volunteerMenu;
+    cout<<endl;
+
+}
+
+//switch for volunteer
+switch(volunteer)
+{
+    case 1:
+        volunteerRegistration();
+        break;
+
+    case 2:
+        viewRequest();
+        break;
+
+    case 3:
+        submitOffer();
+        break;
+
+    case 4:
+        cout<<"Program will quit..";
+    default:
+        cout<<"There is no options there.. please enter appropriate number above";
+        volunteerMenu();
+}
+
+//ADMIN VOID
+//SchoolHELP create admin acc
+void schoolRegistration()
+{
+    string username;
+    string password;
+
+    //School Data
+    string schoolId;
+    string schoolName;
+    string schoolAdress;
+    string schoolCity;
+
+    //Admin Data
+    string fullName;
+    string email;
+    string phone;
+    string staffId;
+    string position;
+    int phone;
+
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password: ";
+    cin >> password;
+    cout << "Enter name of the school: ";
+    cin >> schoolName;
+    cout << "Enter school adress: ";
+    cin >> schoolAdress;
+    cout << "Enter school city: ";
+    cin >> schoolCity;
+
+    cout << "Your SchoolID \n";
+
+    //Prompted to login and make admin acc
+    cout << "School Admin";
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password: ";
+    cin >> password
+    cout << "Enter Fullname: ";
+    cin >> fullName;
+    cout << "Enter Email: ";
+    cin >> email;
+    cout << "Enter Phone: ";
+    cin >> phone;
+    cout << "StaffID: ";
+    cin >> staffId;
+    cout << "Position: ";
+    cin >> position;
+    cout << "Successfully Registered!\n";
+
+    //optional for make program pause properly until user press enter
+    getch();
+
+    //Re Enter information for administrator prompted to login
+    cout << "You need to Login to continue"
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password:";
+    cin >> password;
+    main();
+}
+//Admin submit request here
+void submitRequest()
+{
+    string fullname;
+    string position;
+    string proposedDate;
+    string proposedTime;
+    string schoolName;
+    int numStudents;
+    string studentLevel;
+
+    //cout << stikomBali.printUser() << endl;
+
+    //school admin name and position
+    //school ID and School Name
+    cout << "Enter Description of the tutorial request";
+    cout << "Date: ";
+    cin >> proposedDate;
+    cout << "Time: ";
+    cin >> proposedTime;
+    cout << "Student Level: ";
+    cin >> studentLevel;
+    cout << "Number of Expected Students: ";
+    cin >> numStudents;
+    //possible pointer for volunteer
+    adminMenu();
+}
+
+void reviewOffers()
+{
+    // School administrator prompted to enter username and password
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password: ";
+    cin >> password;
+
+    //Admin name and ID (add soon)
+    cout << "View";
+
+    cout << "Accept this offer?";
+
+    adminMenu();
+}
+
+
+//VOLUNTEER VOID
+//Register as volunteer
+void volunteerRegistration()
+{
+    string username;
+    string password;
+    string fullname;
+    string email;
+    string phone;
+    string occupation;
+    string dateOfBirth;
+
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password: ";
+    cin >> password;
+    cout << "Enter Fullname: ";
+    cin >> fullname;
+    cout << "Enter Email: ";
+    cin >> email;
+    cout << "Enter Phone: ";
+    cin >> phone;
+    cout << "Occupation: ";
+    cin >> occupation;
+    cout << "Date of birth: ";
+    cin >> dateOfBirth;
+    cout<<"Successfully Registered! \n";
+
+    volunteerMenu();
+}
+
+void viewRequest()
+{
+    bool offerStatus;
+    string remarks;
+    string offerDate;
+
+    cout << " ";
+}
+
+void submitOffer()
+{
+    string username;
+    string password;
+
+    //Please Login...
+    cout << "Enter Username: ";
+    cin >> username;
+    cout << "Enter Password: ";
+    cin >> password;
+
+    //request from admin will show there and let volunteer choose
+    //offerlist
+
+    //offerstatus
+    //offername = PENDING
+
+}
